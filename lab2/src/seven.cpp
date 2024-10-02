@@ -111,6 +111,7 @@ Seven Seven::add(const Seven &other)
         ans2[max_l] = '1';
         c._array = ans2;
         c._size = max_l + 1;
+        delete [] ans;
     }
     else
     {
