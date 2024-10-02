@@ -21,7 +21,10 @@ Seven::Seven(const std::initializer_list<unsigned char> &t)
     for (auto &c : t)
     {
         if (!(c <= '6' and '0' <= c))
+        {
+            delete[] _array;
             throw std::range_error("calculation system error");
+        }
         _array[--i] = c;
     }
 }
@@ -33,7 +36,10 @@ Seven::Seven(const std::string &t)
     for (size_t i = 0; i < _size; ++i)
     {
         if (!(t[_size - i - 1] <= '6' and '0' <= t[_size - i - 1]))
+        {
+            delete[] _array;
             throw std::range_error("calculation system error");
+        }
         _array[i] = t[_size - i - 1];
     }
 }
@@ -57,12 +63,13 @@ Seven::Seven(Seven &&other) noexcept // конструктор перемеще�
 
 Seven::~Seven() noexcept
 {
-    if (_size > 0)
+    if (_array != nullptr)
     {
-        _size = 0;
         delete[] _array;
         _array = nullptr;
     }
+    if (_size > 0)
+        _size = 0;
 }
 
 // Вывод
@@ -111,7 +118,7 @@ Seven Seven::add(const Seven &other)
         ans2[max_l] = '1';
         c._array = ans2;
         c._size = max_l + 1;
-        delete [] ans;
+        delete[] ans;
     }
     else
     {
