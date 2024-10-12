@@ -16,4 +16,5 @@ int check_day(std::string day, int n)
         return (n == 56) ? 1 : 0;
     else if (day == "Воскресенье")
         return (n == 666 || n == -666) ? 1 : 0;
+    return 0;
 }
