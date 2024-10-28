@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 enable_testing()
 
-add_subdirectory(lab1)
-add_subdirectory(lab2)
-add_subdirectory(lab3)
+#add_subdirectory(lab1)
+#add_subdirectory(lab2)
+# add_subdirectory(lab3)
+add_subdirectory(lab4)
