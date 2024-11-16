@@ -6,33 +6,35 @@ class StackIterator
 {
 private:
     StackT *stack;
+    int index;
 
 public:
-    StackIterator(StackT *value) : stack(value){};
+    StackIterator(StackT *value, int index) : stack(value), index(index) {};
 
     StackIterator<ItemT, StackT> &operator++()
     {
-        if (!stack->empty())
-            stack->pop();
+        --index;
         return *this;
     }
 
     bool operator==(const StackIterator<ItemT, StackT> &other) const
     {
-        if (stack->empty() and (other.stack == nullptr or other.stack->empty()))
+        if (index == other.index and stack == other.stack)
             return true;
-        if (stack->empty() or (other.stack == nullptr or other.stack->empty()))
-            return false;
-        return stack == other.stack;
+        return false;
     }
 
     ItemT operator*() const
     {
-        return stack->top();
+        if (index < 0)
+            throw std::out_of_range("Index out of range");
+        return stack->data[index];
     }
 
     ItemT operator->() const
     {
-        return stack->top();
+        if (index <= 0)
+            throw std::out_of_range("Index out of range");
+        return stack->data[index];
     }
 };

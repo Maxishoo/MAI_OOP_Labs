@@ -12,6 +12,13 @@ private:
     size_t capacity;
     size_t size;
 
+    // Объявление дружественных функций
+    template <class ItemT, class StackT>
+    friend ItemT StackIterator<ItemT, StackT>::operator*() const;
+
+    template <class ItemT, class StackT>
+    friend ItemT StackIterator<ItemT, StackT>::operator->() const;
+
 public:
     Stack(allocator_type alloc = {}) noexcept : allocator(alloc), data(nullptr), capacity(0), size(0) {}
 
@@ -106,11 +113,11 @@ public:
 
     StackIterator<T, Stack<T, allocator_type>> begin() noexcept // первый элемент стека
     {
-        return StackIterator<T, Stack<T, allocator_type>>(this);
+        return StackIterator<T, Stack<T, allocator_type>>(this, size-1);
     }
 
     StackIterator<T, Stack<T, allocator_type>> end() noexcept // обозначим концом стека нулевой указатель
     {
-        return StackIterator<T, Stack<T, allocator_type>>(nullptr);
+        return StackIterator<T, Stack<T, allocator_type>>(this, -1);
     }
 };
