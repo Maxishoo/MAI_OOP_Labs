@@ -4,11 +4,11 @@
 
 class Visitor;
 
-class KnightErrant : public NPC
+class Pegasus : public NPC
 {
 public:
-    KnightErrant(int x, int y, std::string name);
-    KnightErrant(std::istream &is);
+    Pegasus(int x, int y, std::string name);
+    Pegasus(std::istream &is);
 
     bool accept(Visitor &visitor) noexcept override;
 };

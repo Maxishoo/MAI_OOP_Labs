@@ -1,27 +1,36 @@
-#include<../include/Factory.h>
-std::shared_ptr<NPC> factory(std::istream &is)
+#include <../include/Factory.h>
+std::shared_ptr<NPC> factory(std::istream &is) noexcept
 {
     std::shared_ptr<NPC> result;
     int type{0};
-    if (is >> type)
+
+    is >> type;
+    switch (type)
     {
-        switch (type)
-        {
-        case KnightErrantType:
-            result = std::make_shared<KnightErrant>(is);
-            break;
-        }
-    }
-    else
+    case KnightErrantType:
+        result = std::make_shared<KnightErrant>(is);
+        break;
+    case SquirrelType:
+        result = std::make_shared<Squirrel>(is);
+        break;
+    case PegasusType:
+        result = std::make_shared<Pegasus>(is);
+        break;
+    default:
         std::cerr << "unexpected NPC type:" << type << std::endl;
+        break;
+    }
 
     if (result)
+    {
         result->subscribe(TextObserver::get());
+        result->subscribe(LogObserver::get());
+    }
 
     return result;
 }
 
-std::shared_ptr<NPC> factory(NpcType type, int x, int y, std::string name)
+std::shared_ptr<NPC> factory(NpcType type, int x, int y, std::string name) noexcept
 {
     std::shared_ptr<NPC> result;
     switch (type)
@@ -29,11 +38,20 @@ std::shared_ptr<NPC> factory(NpcType type, int x, int y, std::string name)
     case KnightErrantType:
         result = std::make_shared<KnightErrant>(x, y, name);
         break;
+    case SquirrelType:
+        result = std::make_shared<Squirrel>(x, y, name);
+        break;
+    case PegasusType:
+        result = std::make_shared<Pegasus>(x, y, name);
+        break;
     default:
         break;
     }
     if (result)
+    {
         result->subscribe(TextObserver::get());
+        result->subscribe(LogObserver::get());
+    }
 
     return result;
 }

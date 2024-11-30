@@ -1,8 +1,7 @@
-#include <../include/Game_functions.h>
-#include<Visitors.h>
+#include <Game_functions.h>
+#include <Visitors.h>
 
-
-std::set<std::shared_ptr<NPC>> fight(std::set<std::shared_ptr<NPC>> &array, size_t distance)
+std::set<std::shared_ptr<NPC>> fight(std::set<std::shared_ptr<NPC>> &array, size_t distance) noexcept
 {
     std::set<std::shared_ptr<NPC>> dead_list;
 
@@ -20,13 +19,14 @@ std::set<std::shared_ptr<NPC>> fight(std::set<std::shared_ptr<NPC>> &array, size
     return dead_list;
 }
 
-std::ostream &operator<<(std::ostream &os, std::set<std::shared_ptr<NPC>> &array)
+std::ostream &operator<<(std::ostream &os, std::set<std::shared_ptr<NPC>> &array) noexcept
 {
-    for(auto i:array)
-    os<<*i<<'\n';
+    for (auto i : array)
+        os << (*i) << '\n';
     return os;
 }
-void save(const std::set<std::shared_ptr<NPC>> &array, const std::string &filename)
+
+void save(const std::set<std::shared_ptr<NPC>> &array, const std::string &filename) noexcept
 {
     std::ofstream fs(filename);
     fs << array.size() << std::endl;
@@ -36,7 +36,7 @@ void save(const std::set<std::shared_ptr<NPC>> &array, const std::string &filena
     fs.close();
 }
 
-std::set<std::shared_ptr<NPC>> load(const std::string &filename)
+std::set<std::shared_ptr<NPC>> load(const std::string &filename) noexcept
 {
     std::set<std::shared_ptr<NPC>> result;
     std::ifstream is(filename);
@@ -52,11 +52,13 @@ std::set<std::shared_ptr<NPC>> load(const std::string &filename)
         std::cerr << "Error: " << std::strerror(errno) << std::endl;
     return result;
 }
-void add_NPC(std::set<std::shared_ptr<NPC>> &array, std::shared_ptr<NPC> npc)
+
+void add_NPC(std::set<std::shared_ptr<NPC>> &array, std::shared_ptr<NPC> npc) noexcept
 {
     array.insert(npc);
 }
-void add_NPC(std::set<std::shared_ptr<NPC>> &array, NpcType type, int x, int y, std::string name)
+
+void add_NPC(std::set<std::shared_ptr<NPC>> &array, NpcType type, int x, int y, std::string name) noexcept
 {
-    array.insert(factory(type,x,y,name));
+    array.insert(factory(type, x, y, name));
 }

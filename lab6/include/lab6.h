@@ -13,6 +13,6 @@
 enum NpcType
 {
     KnightErrantType = 1,
-    // Squirrel = 2,
-    // Pegasus = 3
+    SquirrelType = 2,
+    PegasusType = 3
 };
