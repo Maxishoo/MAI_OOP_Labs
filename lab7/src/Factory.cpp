@@ -1,4 +1,4 @@
-#include <../include/Factory.h>
+#include <Factory.h>
 std::shared_ptr<NPC> factory(std::istream &is) noexcept
 {
     std::shared_ptr<NPC> result;
@@ -52,5 +52,6 @@ std::shared_ptr<NPC> factory(NpcType type, int x, int y, std::string name) noexc
         result->subscribe(TextObserver::get());
         result->subscribe(LogObserver::get());
     }
+
     return result;
 }
