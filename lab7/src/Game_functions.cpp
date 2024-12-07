@@ -161,13 +161,13 @@ FightManager &FightManager::get()
     return instance;
 }
 
-void FightManager::add_event(FightEvent &&event)
+void FightManager::add_event(FightEvent &&event) noexcept
 {
     std::lock_guard<std::shared_mutex> lock(mtx);
     events.push(event);
 }
 
-void FightManager::operator()()
+void FightManager::operator()() noexcept
 {
     while (GAME_RUNNING)
     {

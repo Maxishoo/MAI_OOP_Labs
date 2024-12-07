@@ -25,9 +25,9 @@ private:
 public:
     static FightManager &get();
 
-    void add_event(FightEvent &&event);
+    void add_event(FightEvent &&event) noexcept;
 
-    void operator()();
+    void operator()() noexcept;
 };
 
 void generate_npc(std::set<std::shared_ptr<NPC>> &array, const int COUNT, const int MAX_X, const int MAX_Y) noexcept;
