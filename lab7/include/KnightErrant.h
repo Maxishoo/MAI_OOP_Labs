@@ -1,5 +1,4 @@
 #pragma once
-#include <lab7.h>
 #include <NPC.h>
 
 class Visitor;

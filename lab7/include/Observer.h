@@ -1,5 +1,4 @@
 #pragma once
-#include <lab7.h>
 #include <NPC.h>
 
 extern std::mutex FILE_MUTEX;

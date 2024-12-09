@@ -1,6 +1,5 @@
 #pragma once
 #include <Factory.h>
-#include <lab7.h>
 
 // Game func
 struct print : std::stringstream

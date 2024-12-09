@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../include/lab4.h"
+#include<Array.h>
 // Rect
 TEST(test_01, basic_test_set)
 {

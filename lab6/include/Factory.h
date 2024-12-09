@@ -1,5 +1,4 @@
 #pragma once
-#include <lab6.h>
 #include <KnightErrant.h>
 #include <Pegasus.h>
 #include <Squirrel.h>

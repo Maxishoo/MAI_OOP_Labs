@@ -1,4 +1,4 @@
-#include <../include/lab4.h>
+#include<Array.h>
 
 int main()
 {
